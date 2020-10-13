@@ -24,6 +24,7 @@ set(cli_SOURCES
         DatabaseCommand.cpp
         Diceware.cpp
         Edit.cpp
+        EditDatabase.cpp
         Estimate.cpp
         Exit.cpp
         Export.cpp
