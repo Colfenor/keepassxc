@@ -20,8 +20,8 @@
 #include <QString>
 #include <QTextStream>
 
-#include "EditDatabase.h"
 #include "Create.h"
+#include "EditDatabase.h"
 
 EditDatabase::EditDatabase()
 {
