@@ -571,6 +571,8 @@ bool DatabaseWidget::confirmDeleteEntries(QList<Entry*> entries, bool permanent)
                                            MessageBox::Cancel);
 
         return answer == MessageBox::Delete;
+    } else if (config()->get(Config::Security_NoConfirmMoveEntryToRecycleBin).toBool()) {
+        return true;
     } else {
         QString prompt;
         if (entries.size() == 1) {
@@ -1081,6 +1083,9 @@ void DatabaseWidget::loadDatabase(bool accepted)
         replaceDatabase(openWidget->database());
         switchToMainView();
         processAutoOpen();
+        restoreGroupEntryFocus(m_groupBeforeLock, m_entryBeforeLock);
+        m_groupBeforeLock = QUuid();
+        m_entryBeforeLock = QUuid();
         m_saveAttempts = 0;
         emit databaseUnlocked();
         if (config()->get(Config::MinimizeAfterUnlock).toBool()) {
